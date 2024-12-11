@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Livery Hub - Liveries{% endblock %}
+
+{% block body %}
+
+<h1 align="center" class="mb-5">Public Liveries</h1>
+
+
+
+<ul class="list-group" id="liveryList">
+    {% for livery in liveryList %}
+        <div class="card mb-3 mx-5">
+            <div class="row g-0">
+                <div class="col-lg-4">
+                    {% if livery.img != "" %}
+                    <img src="{{ url_for('static', filename='images/uploads/' + livery.img) }}" class="img-fluid rounded" alt="Picture of Livery" style="max-height: 69vh;">
+                    {% else %}
+                    <img src="{{ url_for('static', filename='images/no-img.jpg') }}" class="img-fluid rounded" alt="No image for this livery" style="max-height: 69vh;">
+                    {% endif %}
+                </div>
+                <div class="col-lg-7 ps-2">
+                    <div class="card-body">
+                    <h5 class="card-title">{{livery.title}}</h5>
+                    <p class="card-text"><small>Created by {{livery.author.username}}</small></p>
+                    <p class="card-text"><small class="text-muted">{{livery.type}} - {{livery.name}}</small></p>
+                    <p class="card-text">{{livery.desc}}</p>
+                    </div>
+                </div>
+                <div class="col-lg-1 py-3 px-3">
+                    {% if user.id in livery.likes|map(attribute="user_id") %}
+                    <a href="/like/{{livery.id}}"><button type="button" class="btn btn-danger">{{livery.likes|length}} <i class="bi bi-heart-fill"></i></button></a>
+                    {% else %}
+                    <a href="/like/{{livery.id}}"><button type="button" class="btn btn-light">{{livery.likes|length}} <i class="bi bi-heart"></i></button></a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</ul>
+
+{% endblock %}

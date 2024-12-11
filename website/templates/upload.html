@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Livery Hub - Upload{% endblock %}
+
+{% block body %}
+
+<div class="mx-5">
+    <form method="POST" enctype="multipart/form-data">
+        <h1 align="center">Upload Livery</h1>
+        <div class="mb-3">
+            <label for="title" class="form-label">Livery Title</label>
+            <input type="text" class="form-control" id="title" name="title">
+        </div>
+        <div class="mb-3">
+            <label for="desc" class="form-label">Livery Description</label>
+            <textarea name="desc" id="desc" class="form-control"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="type" class="form-label">Vehicle Type</label>
+            <select class="form-select" aria-label="Select vehicle type" id="type" name="type">
+                <option selected>Select Type</option>
+                <option value="Ultralight">Ultralight</option>
+                <option value="Single Engine">Single Engine</option>
+                <option value="Helicopter">Helicopter</option>
+                <option value="Multi Engine">Multi Engine</option>
+                <option value="Jet Engine">Jet Engine</option>
+                <option value="Supersonic Transport">Supersonic Transport</option>
+                <option value="VTOL">VTOL</option>
+                <option value="Airship">Airship</option>
+                <option value="Boat">Boat</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Vehicle Name</label>
+            <input type="text" class="form-control" id="name" name="name">
+        </div>
+        <div class="mb-3">
+            <label for="img" class="form-label">Upload Image</label>
+            <input class="form-control" type="file" id="img" name="img">
+        </div>
+          
+        <br>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+</div>
+
+{% endblock %}
